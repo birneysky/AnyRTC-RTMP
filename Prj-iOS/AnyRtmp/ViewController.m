@@ -34,6 +34,7 @@
     [self.view addSubview:self.powerLabel];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapEvent:)];
     [self.view addGestureRecognizer:tap];
+     self.textField.text = @"rtmp://203.207.99.19:1935/live/zgjyt";
 }
 
 #pragma mark - button event 

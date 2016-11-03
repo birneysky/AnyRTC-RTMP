@@ -76,7 +76,7 @@ private:
 };
 
 #pragma mark - RTMPGuestKit
-@interface RTMPGuestKit() {
+@interface RTMPGuestKit() <RTCEAGLVideoViewDelegate>{
     RTMPGuestIOS* rtmpc_guest_;
 }
 @property (nonatomic,weak) UIView *parView;
@@ -115,6 +115,7 @@ private:
     if (strUrl && render) {
         [UIApplication sharedApplication].idleTimerDisabled = YES;
         self.videoShowView = [[RTCEAGLVideoView alloc] initWithFrame:render.frame];
+        self.videoShowView.delegate = self;
         [render addSubview:self.videoShowView];
         self.parView = render;
         self.parView.backgroundColor = [UIColor blackColor];
@@ -129,4 +130,12 @@ private:
     
     rtmpc_guest_->Guest().StopRtmpPlay();
 }
+
+#pragma mark - *** RTCEAGLVideoViewDelegate ***
+- (void)videoView:(RTCEAGLVideoView *)videoView didChangeVideoSize:(CGSize)size
+{
+    CGRect rect =  AVMakeRectWithAspectRatioInsideRect(size,videoView.bounds);
+    videoView.frame = rect;
+}
+
 @end
