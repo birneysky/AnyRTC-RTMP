@@ -62,8 +62,8 @@
         [[AVAudioSession sharedInstance] setActive:YES error:nil];
         
         //添加耳机拔掉侦听事件
-        AudioSessionInitialize(NULL, NULL, NULL, NULL);
-        AudioSessionAddPropertyListener(kAudioSessionProperty_AudioRouteChange,         audioRouteChangeCallback, (__bridge void *)(self));
+        //AudioSessionInitialize(NULL, NULL, NULL, NULL);
+        //AudioSessionAddPropertyListener(kAudioSessionProperty_AudioRouteChange,         audioRouteChangeCallback, (__bridge void *)(self));
         
         
     }

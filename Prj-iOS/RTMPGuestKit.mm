@@ -120,6 +120,18 @@ private:
         self.parView = render;
         self.parView.backgroundColor = [UIColor blackColor];
         rtmpc_guest_->Guest().StartRtmpPlay([strUrl UTF8String], (__bridge void*)_videoShowView);
+        
+        /*
+         使用扬声器播放
+         */
+        AVAudioSession * session = [AVAudioSession sharedInstance];
+        NSError * error = nil;
+        [session overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:&error];
+        if (error) {
+            NSLog(@"fail to override audio output port : %@",error);
+            error = nil;
+        }
+        
         return YES;
     }
     return NO;
